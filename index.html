@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday My Love 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #ffdee9, #b5fffc);
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      color: #ff4081;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 60px;
+      font-size: 3em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    img {
+      width: 250px;
+      border-radius: 50%;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 64, 129, 0.6);
+      animation: heartbeat 2s infinite;
+    }
+
+    p {
+      font-size: 1.5em;
+      margin: 30px;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Happy Birthday My Love! 🎉</h1>
+  <img src="pic.jpg" alt="Her Beautiful Smile">
+  <p>Wishing you a day filled with love, laughter, and everything as beautiful as you. 💖</p>
+
+  <audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <canvas id="confetti"></canvas>
+
+  <script>
+    // Simple Confetti Animation
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let confettis = [];
+
+    for (let i = 0; i < 300; i++) {
+      confettis.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 5 + 2,
+        color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+        tilt: Math.random() * 10 - 10,
+        tiltAngle: 0,
+        tiltAngleIncremental: Math.random() * 0.1 + 0.05
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettis.forEach((c) => {
+        ctx.beginPath();
+        ctx.lineWidth = c.r / 2;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+        ctx.stroke();
+      });
+
+      update();
+      requestAnimationFrame(draw);
+    }
+
+    function update() {
+      confettis.forEach((c) => {
+        c.y += Math.cos(c.d) + 1 + c.r / 2;
+        c.tiltAngle += c.tiltAngleIncremental;
+        c.tilt = Math.sin(c.tiltAngle) * 15;
+
+        if (c.y > canvas.height) {
+          c.y = -10;
+          c.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    draw();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
