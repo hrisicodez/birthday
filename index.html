@@ -2,192 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Happy Birthday My Love 🎂</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, My Love!</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Comic Sans MS', cursive;
-      background: radial-gradient(circle, #ffe0f0, #fff0f5);
-      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6ec, #ffc0cb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
-      color: #d6336c;
+      overflow-x: hidden;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-top: 30px;
+      font-size: 3em;
+      color: #d6336c;
+      margin-bottom: 0.2em;
     }
 
-    img {
-      width: 200px;
-      border-radius: 50%;
-      margin-top: 20px;
-      animation: pulse 2s infinite;
-      box-shadow: 0 0 20px #ff66b2;
+    p {
+      font-size: 1.2em;
+      color: #444;
+      max-width: 600px;
+      margin: 0 auto 2em;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    #matchstick, #candle {
-      margin: 30px auto;
-      width: 60px;
-      height: 150px;
-      background: #663300;
-      border-radius: 10px;
-      position: relative;
+    button {
+      background-color: #e60073;
+      color: white;
+      padding: 0.75em 2em;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 30px;
       cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
     }
 
-    #flame {
-      position: absolute;
-      top: -40px;
-      left: 12px;
-      width: 35px;
-      height: 50px;
-      background: radial-gradient(#ff0, #f90, #f00);
-      border-radius: 50% 50% 50% 50%;
-      display: none;
-      animation: flicker 1s infinite;
-    }
-
-    @keyframes flicker {
-      0% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.1) rotate(2deg); }
-      100% { transform: scale(1) rotate(-2deg); }
-    }
-
-    #countdown {
-      font-size: 1.5em;
-      margin-top: 20px;
-    }
-
-    .hearts {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .heart {
-      width: 20px;
-      height: 20px;
-      background: red;
-      position: absolute;
-      animation: float 6s linear infinite;
-      clip-path: polygon(50% 0%, 61% 17%, 98% 17%, 68% 40%, 79% 73%, 50% 55%, 21% 73%, 32% 40%, 2% 17%, 39% 17%);
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(1); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    button:hover {
+      background-color: #cc0052;
     }
 
     #gift {
-      margin: 40px auto;
-      width: 100px;
-      height: 100px;
-      background: pink;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #ff1493;
-      cursor: pointer;
-      position: relative;
-    }
-
-    #gift:after {
-      content: "🎁";
-      font-size: 3em;
-      position: absolute;
-      top: 25%;
-      left: 25%;
-    }
-
-    #message {
       display: none;
-      font-size: 1.5em;
-      margin: 20px;
-      animation: fadeIn 2s ease-in;
+      background-color: #fff0f5;
+      margin-top: 2em;
+      padding: 1.5em;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      max-width: 500px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .hearts {
+      margin-top: 2em;
+      font-size: 2em;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Happy Birthday My Love! 🎉</h1>
-  <img src="pic.jpg" alt="Her Smile" />
+  <h1>Happy Birthday, My Love! 🎉</h1>
+  <p>You make my world brighter every single day. I made this just for you. 💖</p>
+  
+  <button onclick="document.getElementById('gift').style.display='block'">
+    Open Your Gift 🎁
+  </button>
 
-  <div id="matchstick" onclick="lightCandle()">
-    <div id="flame"></div>
+  <div id="gift">
+    <h2>💌 A Little Surprise!</h2>
+    <p>Inside this virtual space, you'll find memories, joy, and a whole lot of love. Scroll down for more soon-to-be-unlocked surprises!</p>
   </div>
 
-  <div id="countdown">Countdown: <span id="time"></span></div>
-
-  <div class="hearts" id="heart-container"></div>
-
-  <div id="gift" onclick="showMessage()"></div>
-
-  <div id="message">💖 I love you more each day. Happy Birthday, sweetheart! 💖</div>
-
-<audio id="birthdayAudio" muted autoplay loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
-
-
-  <script>
-    // Countdown timer
-    const target = new Date();
-    target.setHours(23, 59, 59); // You can set a future date/time here
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = target - now;
-
-      if (diff <= 0) {
-        document.getElementById("time").innerText = "It's time! 🎂";
-        return;
-      }
-
-      const hrs = Math.floor(diff / 1000 / 60 / 60);
-      const mins = Math.floor((diff / 1000 / 60) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("time").innerText = `${hrs}h ${mins}m ${secs}s`;
-      setTimeout(updateCountdown, 1000);
-    }
-
-    updateCountdown();
-
-    // Flame on matchstick
-    function lightCandle() {
-      document.getElementById('flame').style.display = 'block';
-      launchHearts();
-    }
-
-    // Hearts animation
-    function launchHearts() {
-      const container = document.getElementById('heart-container');
-      for (let i = 0; i < 20; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        container.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 6000);
-      }
-    }
-
-    // Gift box click
-    function showMessage() {
-      document.getElementById('message').style.display = 'block';
-    }
-  </script>
+  <div class="hearts">❤️❤️❤️</div>
 </body>
 </html>
-
