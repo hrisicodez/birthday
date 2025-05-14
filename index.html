@@ -3,86 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday, My Love!</title>
+  <title>Ribbon Opening Animation</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #ffe6ec, #ffc0cb);
+      padding: 0;
+      background: #fdf0f0;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      overflow-x: hidden;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
     }
 
-    h1 {
-      font-size: 3em;
-      color: #d6336c;
-      margin-bottom: 0.2em;
+    .ribbon-container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #fff;
+      border: 2px solid #e60000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
 
-    p {
-      font-size: 1.2em;
-      color: #444;
-      max-width: 600px;
-      margin: 0 auto 2em;
+    .ribbon-left,
+    .ribbon-right {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      background: #e60000;
+      z-index: 2;
     }
 
-    button {
-      background-color: #e60073;
-      color: white;
-      padding: 0.75em 2em;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
+    .ribbon-left {
+      left: 0;
+      transform-origin: right;
+      animation: openLeft 3s forwards;
     }
 
-    button:hover {
-      background-color: #cc0052;
+    .ribbon-right {
+      right: 0;
+      transform-origin: left;
+      animation: openRight 3s forwards;
     }
 
-    #gift {
-      display: none;
-      background-color: #fff0f5;
-      margin-top: 2em;
-      padding: 1.5em;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      max-width: 500px;
+    .message {
+      font-size: 24px;
+      color: #333;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 3s forwards 3s;
     }
 
-    .hearts {
-      margin-top: 2em;
-      font-size: 2em;
-      animation: float 2s infinite ease-in-out;
+    @keyframes openLeft {
+      0% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
+    @keyframes openRight {
+      0% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1>Happy Birthday, My Love! 🎉</h1>
-  <p>You make my world brighter every single day. I made this just for you. 💖</p>
-  
-  <button onclick="document.getElementById('gift').style.display='block'">
-    Open Your Gift 🎁
-  </button>
-
-  <div id="gift">
-    <h2>💌 A Little Surprise!</h2>
-    <p>Inside this virtual space, you'll find memories, joy, and a whole lot of love. Scroll down for more soon-to-be-unlocked surprises!</p>
+  <div class="ribbon-container">
+    <div class="ribbon-left"></div>
+    <div class="ribbon-right"></div>
+    <div class="message">🎉 Surprise! 🎁</div>
   </div>
 
-  <div class="hearts">❤️❤️❤️</div>
+  <audio id="bg-music" autoplay>
+    <source src="your-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Optional: Start music after animation delay if needed
+    const audio = document.getElementById("bg-music");
+    setTimeout(() => {
+      audio.play().catch(() => {
+        // handle autoplay restrictions
+        console.log("Autoplay blocked. Please click to play.");
+      });
+    }, 3000); // start after ribbon opens
+  </script>
 </body>
 </html>
