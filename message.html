@@ -1,15 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Birthday Message</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>My Love Letter to You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://i.imgur.com/nIOmZ8L.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Great Vibes', cursive;
+      color: #4b2e1e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .scroll-container {
+      max-width: 900px;
+      background: rgba(255, 248, 220, 0.92);
+      padding: 3em;
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      animation: fadeIn 3s ease-out forwards;
+      font-size: 1.8rem;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .signature {
+      text-align: right;
+      margin-top: 2em;
+      font-size: 2rem;
+      font-style: italic;
+      color: #703c26;
+    }
+
+    .back-button {
+      display: block;
+      margin: 2em auto 0;
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      background-color: #b87333;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      text-align: center;
+      width: fit-content;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #8b4513;
+    }
+  </style>
 </head>
-<body class="center">
-  <h1 class="fade-in">To My Dearest Wife 💌</h1>
-  <p class="fade-in delay">
-    You're the light of my life and the reason I smile every day. On your special day, I want to remind you how much I love and cherish you. 💕
-  </p>
-  <a href="gallery.html" class="btn fade-in delay-2">Next → Memories</a>
+<body>
+  <div class="scroll-container">
+    <p>My Dearest Love,</p>
+
+    <p>
+      From the moment I saw you, I knew my life had changed forever. Every smile you've shared, every laugh we've had, and every quiet moment between us — they’ve become the most precious parts of my story. Your love is the melody to my heart, the calm to my chaos, and the light to every one of my days.
+    </p>
+
+    <p>
+      On this beautiful day, I just want to say thank you — for being you. For loving me, trusting me, and walking with me through every joy and challenge. You are not just the queen of my heart, you are its rhythm. And as long as I breathe, I’ll celebrate your existence.
+    </p>
+
+    <p>
+      May this birthday be just a glimpse of the joy you bring to the world — and to me. Happy Birthday, my love. 💖
+    </p>
+
+    <p class="signature">
+      Forever Yours,<br>
+      Hrisikesh
+    </p>
+
+    <a class="back-button" href="gallery.html">📸 Explore Our Memories</a>
+  </div>
 </body>
 </html>
