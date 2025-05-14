@@ -2,12 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Happy Birthday Love!</title>
+  <title>Happy Birthday, My Love!</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Base styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffe0f0, #ffc0cb);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: transparent url('stardust.png') repeat;
+      animation: sparkle 10s linear infinite;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    .curtain {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background: linear-gradient(to right, #990033, #cc0066);
+      z-index: 10;
+      animation: openCurtain 4s ease forwards;
+    }
+
+    .curtain.left {
+      left: 0;
+      transform-origin: left;
+    }
+
+    .curtain.right {
+      right: 0;
+      transform-origin: right;
+    }
+
+    @keyframes openCurtain {
+      0% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      color: #b30059;
+      padding: 1em;
+      z-index: 1;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.3em;
+      animation: fadeIn 4s ease-out 2s forwards;
+      opacity: 0;
+    }
+
+    p {
+      font-size: 1.5em;
+      max-width: 700px;
+      animation: fadeIn 5s ease-out 2.5s forwards;
+      opacity: 0;
+    }
+
+    .btn {
+      margin-top: 2em;
+      padding: 14px 28px;
+      background: #ff3399;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.2em;
+      cursor: pointer;
+      text-decoration: none;
+      animation: fadeIn 6s ease-out 3s forwards;
+      opacity: 0;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #cc0066;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="center">
-  <h1 class="fade-in">🎉 Happy Birthday, My Love! 🎉</h1>
-  <p class="fade-in delay">Click below to begin the journey 💖</p>
-  <a href="message.html" class="btn fade-in delay-2">Start</a>
+<body>
+  <div class="stars"></div>
+
+  <!-- Curtains -->
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>🎂 Happy Birthday, My Dearest Wife! 💖</h1>
+    <p>
+      Welcome to a little journey I've created just for you.  
+      Each page is filled with love, memories, and a few surprises 💕  
+      I hope it makes you smile like you make me smile every day.  
+    </p>
+    <a href="message.html" class="btn">Start the Journey 💌</a>
+  </div>
 </body>
 </html>
