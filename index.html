@@ -2,100 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ribbon Opening Animation</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #fdf0f0;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: sans-serif;
-    }
-
-    .ribbon-container {
-      position: relative;
-      width: 300px;
-      height: 200px;
-      background: #fff;
-      border: 2px solid #e60000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .ribbon-left,
-    .ribbon-right {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      top: 0;
-      background: #e60000;
-      z-index: 2;
-    }
-
-    .ribbon-left {
-      left: 0;
-      transform-origin: right;
-      animation: openLeft 3s forwards;
-    }
-
-    .ribbon-right {
-      right: 0;
-      transform-origin: left;
-      animation: openRight 3s forwards;
-    }
-
-    .message {
-      font-size: 24px;
-      color: #333;
-      z-index: 1;
-      opacity: 0;
-      animation: fadeIn 3s forwards 3s;
-    }
-
-    @keyframes openLeft {
-      0% { transform: scaleX(1); }
-      100% { transform: scaleX(0); }
-    }
-
-    @keyframes openRight {
-      0% { transform: scaleX(1); }
-      100% { transform: scaleX(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
+  <title>Happy Birthday Love!</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="ribbon-container">
-    <div class="ribbon-left"></div>
-    <div class="ribbon-right"></div>
-    <div class="message">🎉 Surprise! 🎁</div>
-  </div>
-
-  <audio id="bg-music" autoplay>
-    <source src="your-song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    // Optional: Start music after animation delay if needed
-    const audio = document.getElementById("bg-music");
-    setTimeout(() => {
-      audio.play().catch(() => {
-        // handle autoplay restrictions
-        console.log("Autoplay blocked. Please click to play.");
-      });
-    }, 3000); // start after ribbon opens
-  </script>
+<body class="center">
+  <h1 class="fade-in">🎉 Happy Birthday, My Love! 🎉</h1>
+  <p class="fade-in delay">Click below to begin the journey 💖</p>
+  <a href="message.html" class="btn fade-in delay-2">Start</a>
 </body>
 </html>
