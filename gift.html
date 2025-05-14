@@ -13,8 +13,8 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      overflow: hidden;
       text-align: center;
+      overflow: hidden;
     }
 
     h1 {
@@ -67,7 +67,7 @@
       transform: translateX(-50%);
     }
 
-    .message {
+    .message, .gift-link {
       display: none;
       font-size: 1.4rem;
       color: #880044;
@@ -79,14 +79,20 @@
       display: block;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .gift-link {
+      margin-top: 20px;
+      display: block;
+      font-size: 1.2rem;
+      color: #b4004e;
+      text-decoration: none;
+      background: #fff0f5;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid #b4004e;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .gift-link:hover {
+      background: #ffe3ed;
     }
 
     .back-button {
@@ -103,6 +109,16 @@
 
     .back-button:hover {
       background: #800033;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -122,12 +138,34 @@
     Happy Birthday, My Love. 💘
   </div>
 
+  <a href="https://yourgiftlink.com" target="_blank" class="gift-link" id="giftLink">🎁 Click here to unwrap your actual gift!</a>
+
   <a class="back-button" href="index.html">🔁 Go to Beginning</a>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" src="romantic-music.mp3" preload="auto"></audio>
+
+  <!-- Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
     function openGift() {
       const box = document.querySelector('.gift-box');
-      box.classList.add('opened');
+      const music = document.getElementById('bgMusic');
+      const link = document.getElementById('giftLink');
+
+      if (!box.classList.contains('opened')) {
+        box.classList.add('opened');
+        music.play();
+        link.style.display = "inline-block";
+
+        // Confetti burst
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
     }
   </script>
 
