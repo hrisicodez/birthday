@@ -5,7 +5,6 @@
   <title>Happy Birthday, My Love!</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Base styling */
     body {
       margin: 0;
       padding: 0;
@@ -14,11 +13,12 @@
       overflow: hidden;
     }
 
+    /* Sparkling background */
     .stars {
       position: fixed;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      z-index: -2;
       background: transparent url('stardust.png') repeat;
       animation: sparkle 10s linear infinite;
     }
@@ -28,6 +28,7 @@
       100% { background-position: 100px 100px; }
     }
 
+    /* Curtain animation */
     .curtain {
       position: fixed;
       top: 0;
@@ -38,15 +39,8 @@
       animation: openCurtain 4s ease forwards;
     }
 
-    .curtain.left {
-      left: 0;
-      transform-origin: left;
-    }
-
-    .curtain.right {
-      right: 0;
-      transform-origin: right;
-    }
+    .curtain.left { left: 0; transform-origin: left; }
+    .curtain.right { right: 0; transform-origin: right; }
 
     @keyframes openCurtain {
       0% { transform: scaleX(1); }
@@ -69,15 +63,29 @@
     h1 {
       font-size: 3em;
       margin-bottom: 0.3em;
-      animation: fadeIn 4s ease-out 2s forwards;
+      animation: fadeIn 3s ease-out 3s forwards;
       opacity: 0;
     }
 
-    p {
-      font-size: 1.5em;
+    .typewriter {
+      font-size: 1.4em;
+      width: 90%;
       max-width: 700px;
-      animation: fadeIn 5s ease-out 2.5s forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #b30059;
+      animation: typing 5s steps(40, end) 4s forwards, blink 0.75s step-end infinite;
+      color: #333;
       opacity: 0;
+    }
+
+    @keyframes typing {
+      from { width: 0; opacity: 1; }
+      to { width: 100%; opacity: 1; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
 
     .btn {
@@ -90,7 +98,7 @@
       font-size: 1.2em;
       cursor: pointer;
       text-decoration: none;
-      animation: fadeIn 6s ease-out 3s forwards;
+      animation: fadeIn 6s ease-out 6s forwards;
       opacity: 0;
       transition: background 0.3s ease;
     }
@@ -103,24 +111,73 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Floating hearts */
+    .hearts {
+      position: fixed;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .hearts span {
+      position: absolute;
+      display: block;
+      color: #ff66a3;
+      font-size: 2rem;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Background effects -->
   <div class="stars"></div>
+  <div class="hearts" id="hearts"></div>
 
   <!-- Curtains -->
   <div class="curtain left"></div>
   <div class="curtain right"></div>
 
+  <!-- Background Music -->
+  <audio autoplay loop volume="0.3">
+    <source src="bg.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+
   <!-- Main Content -->
   <div class="container">
     <h1>🎂 Happy Birthday, My Dearest Wife! 💖</h1>
-    <p>
-      Welcome to a little journey I've created just for you.  
-      Each page is filled with love, memories, and a few surprises 💕  
-      I hope it makes you smile like you make me smile every day.  
+    <p class="typewriter">
+      This is a journey filled with love, memories, and surprises... just for you. 💕
     </p>
     <a href="message.html" class="btn">Start the Journey 💌</a>
   </div>
+
+  <!-- Heart particle script -->
+  <script>
+    const heartContainer = document.getElementById('hearts');
+    for (let i = 0; i < 30; i++) {
+      const span = document.createElement('span');
+      span.textContent = '💖';
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.animationDuration = 5 + Math.random() * 10 + 's';
+      span.style.fontSize = 20 + Math.random() * 30 + 'px';
+      heartContainer.appendChild(span);
+    }
+  </script>
 </body>
 </html>
