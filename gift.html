@@ -2,32 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Final Surprise</title>
+  <title>The Final Surprise</title>
   <style>
     body {
       margin: 0;
-      background: linear-gradient(to right, #ffe6f0, #ffc1d3);
+      background: radial-gradient(circle at center, #ffeef4, #ffc1d3);
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      overflow-x: hidden;
       text-align: center;
-      overflow: hidden;
+      min-height: 100vh;
+      position: relative;
     }
 
     h1 {
       font-size: 3rem;
+      margin-top: 40px;
       color: #b4004e;
-      margin-bottom: 20px;
       animation: fadeIn 2s ease-out forwards;
     }
 
     p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #5c1a38;
       max-width: 600px;
+      margin: 0 auto;
       animation: fadeIn 3s ease-out forwards;
     }
 
@@ -37,7 +35,7 @@
       height: 200px;
       background: #ff4d88;
       border-radius: 20px;
-      margin: 40px 0;
+      margin: 50px auto;
       animation: bounce 2s infinite;
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
       cursor: pointer;
@@ -71,7 +69,6 @@
       display: none;
       font-size: 1.4rem;
       color: #880044;
-      font-weight: bold;
       animation: fadeIn 2s ease forwards;
     }
 
@@ -95,20 +92,20 @@
       background: #ffe3ed;
     }
 
-    .back-button {
-      margin-top: 40px;
-      background: #b4004e;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      text-decoration: none;
+    .love-letter {
+      display: none;
+      width: 200px;
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      transform: translateX(-50%);
+      animation: drop 2s ease forwards;
+      z-index: 10;
     }
 
-    .back-button:hover {
-      background: #800033;
+    @keyframes drop {
+      from { opacity: 0; transform: translate(-50%, -100px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
     }
 
     @keyframes bounce {
@@ -120,12 +117,34 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    .back-button {
+      margin-top: 50px;
+      background: #b4004e;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      background: #800033;
+    }
+
+    canvas#fireworksCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
   </style>
 </head>
 <body>
 
-  <h1>🎀 Your Final Surprise 🎀</h1>
-  <p>Click the gift box below to unwrap your surprise!</p>
+  <h1>🎀 The Final Surprise 🎀</h1>
+  <p>Click the gift box below to reveal your gift, my love…</p>
 
   <div class="gift-box" onclick="openGift()">
     <div class="gift-lid"></div>
@@ -133,40 +152,76 @@
   </div>
 
   <div class="message" id="finalMessage">
-    💖 I may not have wrapped diamonds or gold, <br>
-    but here's a promise of forever love. <br>
-    Happy Birthday, My Love. 💘
+    💖 This is just the beginning of many surprises...<br>
+    You are the greatest gift of my life. Happy Birthday, my queen! 💘
   </div>
 
-  <a href="https://yourgiftlink.com" target="_blank" class="gift-link" id="giftLink">🎁 Click here to unwrap your actual gift!</a>
+  <a href="https://yourgiftlink.com" target="_blank" class="gift-link" id="giftLink">🎁 Unwrap Your Actual Gift</a>
+
+  <!-- Love Letter Image -->
+  <img src="love-letter.png" alt="Love Letter" class="love-letter" id="loveLetter">
 
   <a class="back-button" href="index.html">🔁 Go to Beginning</a>
 
   <!-- Background Music -->
   <audio id="bgMusic" src="song.mp3" preload="auto"></audio>
 
-  <!-- Confetti Script -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Fireworks Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
 
+  <!-- Confetti & Fireworks Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function launchFireworks() {
+      const duration = 3000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
     function openGift() {
       const box = document.querySelector('.gift-box');
       const music = document.getElementById('bgMusic');
       const link = document.getElementById('giftLink');
+      const letter = document.getElementById('loveLetter');
 
       if (!box.classList.contains('opened')) {
         box.classList.add('opened');
-        music.play();
+        document.getElementById('finalMessage').style.display = 'block';
         link.style.display = "inline-block";
+        letter.style.display = "block";
 
-        // Confetti burst
-        confetti({
-          particleCount: 150,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
+        music.play();
+        launchFireworks();
       }
     }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
   </script>
 
 </body>
