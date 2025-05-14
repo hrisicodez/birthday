@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Time – For My Love</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffe0ec, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+      max-width: 700px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d6336c;
+      font-size: 2.5rem;
+    }
+
+    .question {
+      margin-top: 30px;
+    }
+
+    .question h3 {
+      color: #444;
+    }
+
+    .options {
+      margin-top: 10px;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 10px;
+      background: #f8f8f8;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .options label:hover {
+      background: #ffe0ec;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #a0254d;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 1.3rem;
+      color: #444;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .next-link {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #d6336c;
+      text-decoration: none;
+    }
+
+    .next-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💞 Let's Play a Little Quiz 💞</h1>
+    <form id="quizForm">
+      <div class="question">
+        <h3>1. Where did we first meet?</h3>
+        <div class="options">
+          <label><input type="radio" name="q1" value="correct"> School Library</label>
+          <label><input type="radio" name="q1" value="wrong"> Café Corner</label>
+          <label><input type="radio" name="q1" value="wrong"> At a Wedding</label>
+          <label><input type="radio" name="q1" value="wrong"> Instagram Chat</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>2. What’s our favorite place to visit together?</h3>
+        <div class="options">
+          <label><input type="radio" name="q2" value="wrong"> Goa</label>
+          <label><input type="radio" name="q2" value="correct"> The Beach at Sunset</label>
+          <label><input type="radio" name="q2" value="wrong"> The Mall</label>
+          <label><input type="radio" name="q2" value="wrong"> My Couch 😅</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>3. What’s my nickname for you?</h3>
+        <div class="options">
+          <label><input type="radio" name="q3" value="wrong"> Sweetpea</label>
+          <label><input type="radio" name="q3" value="wrong"> Pudding</label>
+          <label><input type="radio" name="q3" value="correct"> My Queen 👑</label>
+          <label><input type="radio" name="q3" value="wrong"> Baby Shark</label>
+        </div>
+      </div>
+
+      <button type="button" onclick="checkAnswers()">Submit Answers</button>
+    </form>
+
+    <div id="result"></div>
+
+    <a class="next-link" href="video.html">🎥 Ready for Your Surprise Video?</a>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const form = document.getElementById('quizForm');
+      const q1 = form.q1.value;
+      const q2 = form.q2.value;
+      const q3 = form.q3.value;
+      let score = 0;
+
+      if (q1 === "correct") score++;
+      if (q2 === "correct") score++;
+      if (q3 === "correct") score++;
+
+      const result = document.getElementById('result');
+      if (score === 3) {
+        result.innerHTML = `💖 Perfect Score! You truly know us inside and out!`;
+      } else {
+        result.innerHTML = `You got ${score}/3 — but every answer is still perfect because it's from you. 💘`;
+      }
+    }
+  </script>
+</body>
+</html>
