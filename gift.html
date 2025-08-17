@@ -65,20 +65,31 @@
       transform: translateX(-50%);
     }
 
-    .message {
+    .message, .gift-link {
       display: none;
       font-size: 1.4rem;
       color: #880044;
       animation: fadeIn 2s ease forwards;
     }
 
-    .gift-image {
-      display: none;
-      margin: 20px auto;
-      max-width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      animation: fadeIn 2s ease forwards;
+    .gift-box.opened + .message {
+      display: block;
+    }
+
+    .gift-link {
+      margin-top: 20px;
+      display: block;
+      font-size: 1.2rem;
+      color: #b4004e;
+      text-decoration: none;
+      background: #fff0f5;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid #b4004e;
+    }
+
+    .gift-link:hover {
+      background: #ffe3ed;
     }
 
     .love-letter {
@@ -145,8 +156,7 @@
     You are the greatest gift of my life. Happy Birthday, my queen! 💘
   </div>
 
-  <!-- Actual Gift Image -->
-  <img src="Gifts.png" alt="Your Gift" class="gift-image" id="giftImage">
+  <a href="https://yourgiftlink.com" target="_blank" class="gift-link" id="giftLink">🎁 Unwrap Your Actual Gift</a>
 
   <!-- Love Letter Image -->
   <img src="love-letter.png" alt="Love Letter" class="love-letter" id="loveLetter">
@@ -194,13 +204,13 @@
     function openGift() {
       const box = document.querySelector('.gift-box');
       const music = document.getElementById('bgMusic');
-      const giftImage = document.getElementById('giftImage');
+      const link = document.getElementById('giftLink');
       const letter = document.getElementById('loveLetter');
 
       if (!box.classList.contains('opened')) {
         box.classList.add('opened');
         document.getElementById('finalMessage').style.display = 'block';
-        giftImage.style.display = "block";
+        link.style.display = "inline-block";
         letter.style.display = "block";
 
         music.play();
